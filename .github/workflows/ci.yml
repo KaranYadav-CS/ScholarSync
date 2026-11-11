@@ -19,12 +19,22 @@ jobs:
       with:
         node-version: '20.x'
         cache: 'npm'
+        cache-dependency-path: |
+          package-lock.json
+          server/package-lock.json
+          client/package-lock.json
 
-    - name: Install root & server dependencies
+    - name: Install server dependencies
       run: |
-        npm ci || npm install
-        cd server && (npm ci || npm install) && cd ..
-        cd client && (npm ci || npm install) && cd ..
+        cd server
+        npm ci
+        cd ..
+
+    - name: Install client dependencies
+      run: |
+        cd client
+        npm ci
+        cd ..
 
     - name: Run automated test suite
       run: |
@@ -32,8 +42,10 @@ jobs:
 
     - name: Build client production assets
       run: |
+        cd client
         npm run build
+        cd ..
 
-    - name: Verify build artifacts
+    - name: Verify build output
       run: |
-        test -d server/public || test -d client/dist
+        test -d client/dist
