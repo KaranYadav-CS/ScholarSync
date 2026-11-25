@@ -1,6 +1,11 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const bcrypt = require('../server/node_modules/bcryptjs');
+let bcrypt;
+try {
+  bcrypt = require('bcryptjs');
+} catch {
+  bcrypt = require('../server/node_modules/bcryptjs');
+}
 const demoDb = require('../server/src/database/demoDb');
 
 test('Auth Security: Public registration MUST strictly enforce role STUDENT', async () => {

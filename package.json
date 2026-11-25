@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "ScholarSync — Smart Scholarship Application, Verification & Tracking Platform",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "install:server": "cd server && npm install",
     "install:client": "cd client && npm install",
