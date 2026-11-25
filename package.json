@@ -12,6 +12,7 @@
     "install:client": "cd client && npm install",
     "install:all": "npm run install:server && npm run install:client",
     "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
     "build": "npm run build:client",
     "start": "cd server && npm start",
     "dev:server": "cd server && npm run dev",
